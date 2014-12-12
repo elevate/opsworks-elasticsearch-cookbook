@@ -23,7 +23,7 @@
         "CookbookRepo": {
             "Description": "GitURL",
             "Type": "String",
-            "Default": "https://github.com/amazonwebservices/opsworks-elasticsearch-cookbook"
+            "Default": "https://github.com/elevate/opsworks-elasticsearch-cookbook"
         }
     },
     "Conditions": {
@@ -140,7 +140,7 @@
                 ]
             }
         },
-        "myStack": {
+        "elasticsearch-stack": {
             "Type": "AWS::OpsWorks::Stack",
             "Properties": {
                 "Name": {
@@ -171,7 +171,7 @@
                             "port": 80
                         },
                         "cluster": {
-                            "name": "opsworks-elasticsearch"
+                            "name": "elasticsearch-app"
                         },
                         "gateway": {
                             "expected_nodes": 3
@@ -199,7 +199,7 @@
                         },
                         "cloud": {
                             "aws": {
-                                "region": "us-east-1"
+                                "region": "eu-west-1"
                             }
                         },
                         "custom_config": {
@@ -266,7 +266,7 @@
                 }
             }
         },
-        "elasticsearchtest": {
+        "elasticsearchapp": {
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {
                 "GroupDescription": "so that ES cluster can find other nodes"
@@ -276,7 +276,7 @@
             "Type": "AWS::OpsWorks::Layer",
             "Properties": {
                 "StackId": {
-                    "Ref": "myStack"
+                    "Ref": "elasticsearch-stack"
                 },
                 "Name": "Search",
                 "Type": "custom",
@@ -308,7 +308,7 @@
                 "CustomSecurityGroupIds": [
                     {
                         "Fn::GetAtt": [
-                            "elasticsearchtest",
+                            "elasticsearchapp",
                             "GroupId"
                         ]
                     }
