@@ -2,3 +2,4 @@
 .kitchen.local.yml
 
 berks-cookbooks
+elevate-opsworks-elasticsearch-cookbooks.zip
