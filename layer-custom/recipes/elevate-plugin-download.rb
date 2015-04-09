@@ -1,8 +1,6 @@
 Chef::Log.info("******Downloading a file from Amazon S3.******")
 
-gem_package "aws-sdk" do
-  action :install
-end
+include_recipe "aws"
 
 ruby_block "download-object" do
   block do
