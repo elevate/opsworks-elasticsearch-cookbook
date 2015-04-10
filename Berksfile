@@ -15,3 +15,4 @@ cookbook 'yum-epel', '>= 0.3.4', git: 'git://github.com/opscode-cookbooks/yum-ep
 cookbook 'elasticsearch', git: 'git://github.com/elevate/cookbook-elasticsearch'
 cookbook 'mongodb', git: 'git://github.com/edelight/chef-mongodb'
 cookbook 'aws', '= 2.6.0'
+cookbook "newrelic", git: 'git://github.com/escapestudios-cookbooks/newrelic.git', tag: '2.10.0'
