@@ -4,4 +4,4 @@ end
 
 # include_recipe "newrelic::java_agent"
 
-include_recipe "newrelic-meetme"
+include_recipe "newrelic_meetme_plugin"
