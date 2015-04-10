@@ -7,7 +7,7 @@ DEPENDENCIES
     git: git://github.com/opscode-cookbooks/ark.git
     revision: 8390e2a2ba394a465d886b8910f25ca750f7f9b8
     tag: v0.4.2
-  aws (= 2.6.0)
+  aws (= 2.5.0)
   bluepill
     git: git://github.com/opscode-cookbooks/bluepill.git
     revision: 085a3fe714837b53fd1bc496df83283f5933d2d2
