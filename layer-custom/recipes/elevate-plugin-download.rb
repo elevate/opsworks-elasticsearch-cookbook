@@ -17,19 +17,13 @@ ruby_block "download-object" do
 
       Chef::Log.info("******pluginKey #{pluginKey}.  fileName #{fileName}.  filePath #{filePath}.  ******")
 
-      s3 = ::Aws::S3::Client.new(region:'eu-west-1')
+      # s3 = ::Aws::S3::Client.new(region:'eu-west-1')
 
-      resp = s3.get_object(
-        response_target: filePath,
-        bucket: 'elevate-es-plugins',
-        key: pluginKey
-      )
-
-      exists = File.file?(filePath)
-
-      log "File exists: #{exists}" do
-          level :info
-      end
+      #resp = s3.get_object(
+      #  response_target: filePath,
+      #  bucket: 'elevate-es-plugins',
+      #  key: pluginKey
+      #)
 
     end
 
