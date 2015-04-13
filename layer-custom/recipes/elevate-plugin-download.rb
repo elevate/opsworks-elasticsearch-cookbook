@@ -1,17 +1,25 @@
-Chef::Log.info("******Downloading a file from Amazon S3.******")
-
 gem_package "aws-sdk" do
   action :install
 end
-
-include_recipe "aws"
 
 version = node.elasticsearch['elevate']['version']
 fileName = "elasticsearch-elevate-plugin-#{version}.zip"
 localPath = "/home/ec2user/#{fileName}"
 remotePath = "/release/com/elevatedirect/elasticsearch/plugin/#{fileName}"
 
-aws_s3_file localPath do
-  bucket 'elevate-es-plugins'
-  remote_path remotePath
+ruby_block "download-object" do
+
+  block do
+      require 'aws-sdk'
+
+      s3 = ::Aws::S3::Client.new(region:'eu-west-1')
+
+      resp = s3.get_object(
+        response_target: localPath,
+        bucket: 'elevate-es-plugins',
+        key: remotePath
+      )
+  end
+  
+  action :run
 end
