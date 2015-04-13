@@ -2,6 +2,8 @@ gem_package "aws-sdk" do
   action :install
 end
 
+chef_gem "aws-sdk"
+
 version = node.elasticsearch['elevate']['version']
 fileName = "elasticsearch-elevate-plugin-#{version}.zip"
 localPath = "/home/ec2user/#{fileName}"
@@ -20,6 +22,6 @@ ruby_block "download-object" do
         key: remotePath
       )
   end
-  
+
   action :run
 end
