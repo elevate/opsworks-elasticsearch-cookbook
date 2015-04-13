@@ -6,11 +6,12 @@ end
 
 include_recipe "aws"
 
-pluginKey = node.elasticsearch['elevate']['plugin-key']
-fileName = node.elasticsearch['elevate']['plugin-file']
-filePath = "/home/ec2user/#{fileName}"
+version = node.elasticsearch['elevate']['version']
+fileName = "elasticsearch-elevate-plugin-#{version}.zip"
+localPath = "/home/ec2user/#{fileName}"
+remotePath = "/release/com/elevatedirect/elasticsearch/plugin/#{fileName}"
 
-aws_s3_file filePath do
+aws_s3_file localPath do
   bucket 'elevate-es-plugins'
-  remote_path filePath
+  remote_path remotePath
 end
