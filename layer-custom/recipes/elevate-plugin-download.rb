@@ -6,27 +6,11 @@ end
 
 include_recipe "aws"
 
-ruby_block "download-object" do
-  block do
+pluginKey = node.elasticsearch['elevate']['plugin-key']
+fileName = node.elasticsearch['elevate']['plugin-file']
+filePath = "/home/ec2user/#{fileName}"
 
-      require 'aws-sdk'
-
-      pluginKey = node.elasticsearch['elevate']['plugin-key']
-      fileName = node.elasticsearch['elevate']['plugin-file']
-      filePath = "/home/ec2user/#{fileName}"
-
-      Chef::Log.info("******pluginKey #{pluginKey}.  fileName #{fileName}.  filePath #{filePath}.  ******")
-
-      s3 = ::Aws::S3::Client.new(region:'eu-west-1')
-
-      resp = s3.get_object(
-        response_target: filePath,
-        bucket: 'elevate-es-plugins',
-        key: pluginKey
-      )
-
-    end
-
-  action :run
-
+aws_s3_file filePath do
+  bucket 'elevate-es-plugins'
+  remote_path filePath
 end
