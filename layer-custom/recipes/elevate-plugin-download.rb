@@ -19,7 +19,11 @@ ruby_block "download-object" do
 
       s3 = AWS::S3.new
       s3obj = s3.buckets['elevate-es-plugins'].objects[remotePath]
-      s3obj.write(Pathname.new(localPath))
+      File.open(localPath, 'wb') do |file|
+        s3obj.read do |chunk|
+          file.write(chunk)
+        end
+      end
   end
 
   action :run
