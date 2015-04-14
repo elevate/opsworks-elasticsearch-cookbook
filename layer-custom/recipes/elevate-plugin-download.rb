@@ -1,8 +1,8 @@
-gem_package "aws-sdk" do
+gem_package "aws-sdk-v1" do
   action :install
 end
 
-chef_gem "aws-sdk"
+chef_gem "aws-sdk-v1"
 
 version = node.elasticsearch['elevate']['version']
 fileName = "elasticsearch-elevate-plugin-#{version}.zip"
@@ -12,15 +12,14 @@ remotePath = "/release/com/elevatedirect/elasticsearch/plugin/#{fileName}"
 ruby_block "download-object" do
 
   block do
-      require 'aws-sdk'
+      require 'aws-sdk-v1'
 
-      s3 = ::Aws::S3::Client.new(region:'eu-west-1')
+      # http://docs.aws.amazon.com/AWSSdkDocsRuby/latest/DeveloperGuide/ruby-dg-roles.html
+      AWS.config(:credential_provider => AWS::Core::CredentialProviders::EC2Provider.new)
 
-      resp = s3.get_object(
-        response_target: localPath,
-        bucket: 'elevate-es-plugins',
-        key: remotePath
-      )
+      s3 = AWS::S3.new
+      s3obj = s3.buckets['elevate-es-plugins'].objects[remotePath]
+      s3obj.write(Pathname.new(localPath))
   end
 
   action :run
