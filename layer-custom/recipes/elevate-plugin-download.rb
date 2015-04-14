@@ -6,8 +6,8 @@ chef_gem "aws-sdk-v1"
 
 version = node.elasticsearch['elevate']['version']
 fileName = "elasticsearch-elevate-plugin-#{version}.zip"
-localPath = "/home/ec2user/#{fileName}"
-remotePath = "/release/com/elevatedirect/elasticsearch/plugin/#{fileName}"
+localPath = "/home/ec2-user/#{fileName}"
+remotePath = "/release/com/elevatedirect/elasticsearch/plugin/elasticsearch-elevate-plugin/#{version}/#{fileName}"
 
 ruby_block "download-object" do
 
