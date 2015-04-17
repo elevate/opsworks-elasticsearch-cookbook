@@ -1,4 +1,4 @@
-Chef::Log.info("******Intalling Elevate ES Plugin.******")
+Chef::Log.info("******Installing Elevate Elasticsearch Plugin.******")
 
 script "elevate_plugin_install" do
 	interpreter "bash"
@@ -10,5 +10,5 @@ script "elevate_plugin_install" do
 	not_if { File.exist?("#{node.elasticsearch[:dir]}/elasticsearch-#{node.elasticsearch[:version]}/plugins/elevate") }
 end
 
-#notifies :restart, 'service[elasticsearch]' unless node.elasticsearch[:skip_restart]
+notifies :restart, 'service[elasticsearch]' unless node.elasticsearch[:skip_restart]
 

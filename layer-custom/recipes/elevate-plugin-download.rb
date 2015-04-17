@@ -1,3 +1,5 @@
+Chef::Log.info("******Downloading Elevate Elasticsearch Plugin.******")
+
 gem_package "aws-sdk-v1" do
   action :install
 end
