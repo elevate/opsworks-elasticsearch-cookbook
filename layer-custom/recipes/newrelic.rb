@@ -5,6 +5,7 @@ end
 # include_recipe "newrelic::java_agent"
 
 node.set['newrelic_meetme_plugin'] = {
+	'license' => node['newrelic']['license'],
 	'services' => {
 		'elasticsearch'	=> {
 			'name' => node['elasticsearch']['cluster']['name'],
