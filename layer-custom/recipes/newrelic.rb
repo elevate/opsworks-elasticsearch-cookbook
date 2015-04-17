@@ -4,4 +4,14 @@ end
 
 # include_recipe "newrelic::java_agent"
 
+node['newrelic_meetme_plugin'] = {
+	'services' => {
+		'elasticsearch'	=> {
+			'name' => node['elasticsearch']['cluster']['name'],
+			'host' => 'localhost',
+			'port' => 9200
+		}
+	}
+}
+
 include_recipe "newrelic_meetme_plugin"
