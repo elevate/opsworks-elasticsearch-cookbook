@@ -2,7 +2,7 @@ user 'newrelic' do
 	system true
 end
 
-# include_recipe "newrelic::java_agent"
+include_recipe "newrelic::java_agent"
 
 node.set['newrelic_meetme_plugin'] = {
 	'license' => node['newrelic']['license'],
