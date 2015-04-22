@@ -2,6 +2,10 @@ user 'newrelic' do
 	system true
 end
 
+node['newrelic'].set['java_agent'] = {
+	'execute_agent_action' => false
+}
+
 include_recipe "newrelic::java_agent"
 
 node.set['newrelic_meetme_plugin'] = {
