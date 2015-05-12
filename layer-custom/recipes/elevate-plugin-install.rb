@@ -5,12 +5,9 @@ script "elevate_plugin_install" do
 	user "root"
 	cwd "#{node.elasticsearch[:dir]}/elasticsearch-#{node.elasticsearch[:version]}/bin/"
 	code <<-EOH
+	plugin -r elevate
   	plugin -i elevate -u file:///home/ec2user/#{node.elasticsearch['elevate']['plugin-file']}
   	EOH
-	not_if { File.exist?("#{node.elasticsearch[:dir]}/elasticsearch-#{node.elasticsearch[:version]}/plugins/elevate") }
 	
-	notifies :restart, 'service[elasticsearch]' unless node.elasticsearch[:skip_restart]
+	notifies :restart, 'service[elasticsearch]'
 end
-
-
-
