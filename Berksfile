@@ -15,4 +15,4 @@ cookbook 'yum-epel', '>= 0.3.4', git: 'git://github.com/opscode-cookbooks/yum-ep
 cookbook 'elasticsearch', git: 'git://github.com/elevate/cookbook-elasticsearch'
 cookbook 'mongodb', git: 'git://github.com/edelight/chef-mongodb'
 cookbook "newrelic", git: 'git://github.com/escapestudios-cookbooks/newrelic.git', tag: '2.11.2'
-cookbook "newrelic_meetme_plugin", git: 'git://github.com/escapestudios-cookbooks/newrelic_meetme_plugin.git', tag: '0.2.0'
+cookbook "newrelic_meetme_plugin", git: 'git://github.com/elevate/newrelic_meetme_plugin.git'
